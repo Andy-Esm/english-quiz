@@ -1,12 +1,34 @@
-import React from 'react';
-import Questions from './Questions';
+import React, {useContext} from 'react';
+import {QuizContext} from '../context/quiz.jsx';
+import Question from './Question';
 
 const Quiz = () => {
+	const [quizState, dispatch] = useContext(QuizContext);
+	const numberOfQuestion = `${quizState.currentQuestionIdx + 1}/${quizState.questions.length}`;
+
 	return (
 		<div className="quiz">
-			<div className="score">Question 1/8</div>
-			<Questions />
-			<div className="next-button">next question</div>
+			{quizState.showResults && (
+				<div className={'results'}>
+					<div className={'congratulation'}>Congratulation</div>
+					<div className={'results-info'}>
+						<div>You have complete the quiz.</div>
+						<div>You've got 4 of 8</div>
+						<button className={'next-button'} onClick={() => dispatch({type: 'RESTART'})}>
+							Restart quiz
+						</button>
+					</div>
+				</div>
+			)}
+			{!quizState.showResults && (
+				<div>
+					<div className="score">Question {numberOfQuestion} </div>
+					<Question />
+					<div className="next-button" onClick={() => dispatch({type: 'NEXT_QUESTION'})}>
+						next question
+					</div>
+				</div>
+			)}
 		</div>
 	);
 };
