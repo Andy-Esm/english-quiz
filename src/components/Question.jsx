@@ -8,12 +8,18 @@ function Question() {
 
 	return (
 		<div>
-			<div className="question">{currentQuestion.question}</div>
-			<div className="answers">
-				<Answers />
-				<Answers />
-				<Answers />
-				<Answers />
+			<div className='question'>{currentQuestion.question}</div>
+			<div className='answers'>
+				{quizState.answers.map((answer, index) => (
+					<Answers
+						key={index}
+						index={index}
+						answerText={answer}
+						onSelectAnswer={(answerText) => dispatch({type: 'SELECT_ANSWER', payload: answerText})}
+						correctAnswer={currentQuestion.correctAnswer}
+						currentAnswer={quizState.currentAnswer}
+					/>
+				))}
 			</div>
 		</div>
 	);

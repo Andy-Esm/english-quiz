@@ -4,10 +4,10 @@
 	"bracketSpacing": false,
 	"bracketSameLine": false,
 	"singleQuote": true,
-	"singleAttributePerLine": false,
+	"singleAttributePerLine": true,
 	"trailingComma": "es5",
 	"printWidth": 100,
 	"useTabs": true,
-	"jsxSingleQuote": false,
+	"jsxSingleQuote": true,
 	"vueIndentScriptAndStyle": true
 }
